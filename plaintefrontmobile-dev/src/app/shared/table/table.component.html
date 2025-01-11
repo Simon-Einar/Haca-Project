@@ -1,0 +1,91 @@
+<table
+  *ngIf="view === 'table' || view === undefined"
+  class="table table-hover table-striped table-vcenter mb-2 text-nowrap"
+>
+  <thead>
+    <tr *ngIf="header">
+      <th *ngFor="let column of columns; let i = index" width="{{ size[i] }}">
+        {{ column }}
+      </th>
+      <th width="1px"></th>
+    </tr>
+    <tr *ngIf="search" [formGroup]="searchForm">
+      <th *ngFor="let column of columns; let i = index">
+        <input
+          size="{{ size[i] }}"
+          type="text"
+          class="search-control"
+          formControlName="{{ column }}"
+          (change)="ngSeach()"
+        />
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let entity of entities">
+      <td *ngFor="let key of columns; let i = index">
+        <a
+          *ngIf="i === 0"
+          href="javascript:void(0);"
+          (click)="ngNavigate(path, ngValue(entity, cle))"
+          >{{ ngValue(entity, key) }}</a
+        >
+        <span
+          *ngIf="i > 0"
+          [ngClass]="getClassByStatus(key, ngValue(entity, key))"
+          >{{ ngValue(entity, key) }}</span
+        >
+      </td>
+
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="row" *ngIf="view === 'grid'">
+  <div *ngFor="let entity of entities" class="col-md-3">
+    <div class="card margin-5">
+      <div class="card-body">
+        <h4 class="card-title text-center">
+          <a
+            href="javascript:void(0);"
+            (click)="ngNavigate(path, ngValue(entity, cle))"
+            >{{ entity.name }}</a
+          >
+        </h4>
+        <h6 class="card-subtitle mb-2 text-muted text-center">
+          <i class="fa fa-university"></i> {{ entity.third.socialReason }}
+        </h6>
+        <p class="card-body"></p>
+      </div>
+      <div class="card-footer"></div>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="Page" *ngIf="pager && pager.totalPages > 1">
+  <ul class="pagination pagination-sm justify-content-end">
+    <li class="page-item" [ngClass]="{ disabled: pager.page === 0 }">
+      <a
+        class="page-link"
+        (click)="getEntities(pager.page - 1)"
+        aria-disabled="true"
+        >{{'Precedent' }}</a
+      >
+    </li>
+    <li
+      class="page-item"
+      *ngFor="let p of getNumber(pager.totalPages); let i = index"
+      [ngClass]="{ active: pager.page === i }"
+    >
+      <a class="page-link" (click)="getEntities(i)">{{ i + 1 }}</a>
+    </li>
+    <li
+      class="page-item"
+      [ngClass]="{ disabled: pager.page === pager.totalPages - 1 }"
+    >
+      <a class="page-link" (click)="getEntities(pager.page + 1)">{{'Suivant' }}</a>
+    </li>
+  </ul>
+</nav>

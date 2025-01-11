@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "plaintems",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

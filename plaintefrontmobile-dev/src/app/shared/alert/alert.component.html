@@ -1,0 +1,6 @@
+<div *ngIf="alert" class="{{ cssClass(alert) }} alert-dismissable" >
+    <a class="close" (click)="removeAlert()">&times;</a>
+    <strong>{{alert.reason}}!</strong>
+    {{alert.message}}
+
+</div>

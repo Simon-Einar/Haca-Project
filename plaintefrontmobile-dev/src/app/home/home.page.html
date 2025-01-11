@@ -1,0 +1,44 @@
+<ion-header [translucent]="false" >
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+    <ion-text color="light">  HOME</ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <div style="height: 90%; display: flex; align-items: center; justify-content: center;">
+  <ion-card>
+    <ion-card-header class="new-background-color" >
+     <ion-card-title style="font-weight: bold;"><ion-text color="light"> Accueil</ion-text>  </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+         <br>
+         <ion-text class="item"><div>Bienvenue à l'Espace Citoyen de la Haute Autorité de la Communication Audiovisuelle Pour ajouter une plainte <a (click) = navigate()>  Click-ici</a></div></ion-text>
+
+        </ion-item>
+
+
+          <ion-item>
+         <ion-col size="5">
+           <div><ion-text>Email  </ion-text></div>
+         </ion-col>
+        <ion-text color="primary">{{contact.email}}</ion-text></ion-item>
+        <ion-item><ion-col size="5">
+          <div><ion-text>Telephone  </ion-text></div>
+        </ion-col>
+           <ion-text color="primary">{{contact.tele}}</ion-text></ion-item>
+      </ion-list>
+      <ion-img [src]="contact.logo"></ion-img>
+
+    </ion-card-content>
+  </ion-card>
+  </div>
+</ion-content>

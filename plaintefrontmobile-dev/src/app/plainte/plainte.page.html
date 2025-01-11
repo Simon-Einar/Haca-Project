@@ -1,0 +1,129 @@
+<ion-header [translucent]="false">
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-text color="light" >PLAINTE</ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header class="new-background-color">
+      <ion-card-title> <ion-text color="light" >Deposer une plainte</ion-text> </ion-card-title>
+    </ion-card-header>
+  <form #addForm="ngForm" (ngSubmit)="onAddPlainte(addForm)">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+      <ion-list>
+        <ion-item>
+          <ion-col size="6" >
+          <div> <ion-label for="TypePlainte">Type de Plainte</ion-label></div>
+          </ion-col>
+          <ion-col size="12" >
+            <div>
+              <ion-select required ngModel name="idTypePlainte" placeholder="type">
+              <ion-list *ngFor="let entity of typePlaintes" >
+              <ion-select-option  value={{entity.id}} >{{entity.typePlainteFr}}</ion-select-option>
+              </ion-list>
+              </ion-select>
+          </div>
+          </ion-col>
+        </ion-item>
+        <ion-item>
+          <ion-col size="6" >
+             <div><ion-label >Service</ion-label></div>
+          </ion-col>
+          <ion-col  size="12">
+            <div>
+              <ion-select required ngModel name="idService" placeholder="service">
+              <ion-list *ngFor="let entity of services">
+              <ion-select-option  value={{entity.id}} >{{entity.service}}</ion-select-option>
+              </ion-list>
+              </ion-select>
+            </div>
+          </ion-col>
+          </ion-item>
+             <ion-item>
+              <ion-col size="7" >
+                <div><ion-label>Emission </ion-label></div>
+              </ion-col>
+               <ion-input type = "text" ngModel name="programme" placeholder="emission" text-center ></ion-input><br>
+              </ion-item>
+       <ion-item>
+        <ion-col size="7">
+          <div><ion-label> Nom </ion-label></div>
+        </ion-col>
+        <ion-input  required type = "text" ngModel name="nom" placeholder="nom"></ion-input>
+      </ion-item>
+
+       <ion-item>
+        <ion-col size="7">
+          <div><ion-label>Prenom </ion-label></div></ion-col>
+         <ion-input required type = "text" ngModel name="prenom" placeholder="prenom"></ion-input><br>
+        </ion-item>
+       <ion-item><ion-col size="7">
+        <div><ion-label> N° Téléphone </ion-label></div></ion-col>
+        <ion-input required type = "text" ngModel name="numTel" placeholder="0600000000"></ion-input><br>
+      </ion-item>
+       <ion-item> <ion-col size="7">
+        <div><ion-label>E-mail</ion-label></div></ion-col>
+        <ion-input required type = "text" ngModel name="adresseElectronique" placeholder="mail"></ion-input><br>
+      </ion-item>
+       <ion-item><ion-col size="7">
+        <div><ion-label>Adresse postale</ion-label></div></ion-col>
+        <ion-input required type = "text" ngModel name="adressePostal" placeholder="adresse"></ion-input><br>
+      </ion-item>
+       <ion-item><ion-col size="7">
+        <div><ion-label>Ville</ion-label></div></ion-col>
+        <ion-input required type = "text" ngModel name="ville" placeholder="ville"></ion-input><br>
+      </ion-item>
+       <ion-item><ion-col size="7">
+        <div><ion-label>Pays</ion-label></div></ion-col>
+        <ion-input required type = "text" ngModel name="pays" placeholder="pay"></ion-input><br>
+      </ion-item>
+
+
+
+        <ion-item><ion-col size="7">
+          <div><ion-label>Objet</ion-label></div></ion-col>
+          <ion-input required type = "text" ngModel name="objet" placeholder="objet"></ion-input><br>
+        </ion-item>
+        <ion-item><ion-col size="7">
+          <div><ion-label>Message</ion-label></div></ion-col>
+           <ion-textarea required type = "text" ngModel name="message" placeholder="message"></ion-textarea><br>
+          </ion-item>
+          <ion-item (click) ="showPicker =! showPicker">
+            <ion-icon icon="calendar-outline" slot="start" class="new-background-color"></ion-icon>
+            <ion-label>Date</ion-label>
+            <ion-text slot="end">
+              {{formattedString}}
+            </ion-text>
+          </ion-item>
+          <ion-datetime *ngIf ="showPicker"
+          #datetime
+          required
+          [value]="dateValue"
+          ngModel name="dateDiffusion"
+          (ionChange)="dateChanged(datetime.value)"
+          >
+  </ion-datetime>
+
+      </ion-list>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    <ion-button
+        [disabled]="addForm.invalid"
+         type="ngSubmit"
+         expand="full"
+         style="font-weight: bold;"
+         class="new-background-color"
+         >
+          Ajouter
+        </ion-button>
+  </form>
+  </ion-card>
+</ion-content>

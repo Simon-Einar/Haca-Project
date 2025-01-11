@@ -1,0 +1,54 @@
+<ion-header [translucent]="false">
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+    <ion-text color="light"> Mes Plaintes</ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-card  *ngFor="let entity of entities" >
+    <ion-card-header class="new-background-color">
+
+      <ion-card-title>
+        <ion-text color="light">Objet :</ion-text>
+        <ion-text color ="light">{{entity.objet}}</ion-text>
+      </ion-card-title>
+
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-col size="5">
+       <div><ion-text>Service</ion-text></div>
+      </ion-col>
+       <ion-text>{{entity.service}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-col size="5">
+          <div><ion-text>Emission</ion-text></div>
+        </ion-col>
+          <ion-text>{{entity.programme}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-col size="5">
+          <div><ion-text>Type Plainte</ion-text></div></ion-col>
+            <ion-text>{{entity.typePlainteFr}}</ion-text>
+      </ion-item>
+      <ion-item>
+      <ion-col size="5">
+        <div><ion-text>Date</ion-text></div>
+      </ion-col>
+          <ion-text>{{entity.dateDiffusion | customDate }}
+          </ion-text>
+       </ion-item>
+      <ion-item>
+        <ion-col size="5">
+          <div><ion-text>Message</ion-text></div></ion-col>
+            <ion-text>{{entity.message}}</ion-text>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
